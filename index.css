@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap');
+
+:root {
+  --background: #101010;
+  --backgroundAlt: #202020;
+  --foreground: #dfdfdf;
+  --foregroundAlt: black;
+  --primary: #ff0050;
+  --secondary: #880028;
+  --tertiary: #666
+}
+
+body {
+  background: var(--background);
+  background-image: radial-gradient(circle, var(--backgroundAlt), #0000);
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  width: 100%;
+  align-content: center;
+  height: 100vh;
+  position: relative;
+  min-height:765px;
+  font-family: "Barlow", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  overflow: hidden;
+}
+
+#background {
+  position: absolute;
+  height: calc(1.5 * max(100vw, 100vh));
+  width: calc(1.5 * max(100vw, 100vh));
+  z-index: -1;
+  overflow: hidden;
+  top: calc(calc(-0.75 * max(100vw, 100vh)) + 50vh);
+  left: calc(calc(-0.75 * max(100vw, 100vh)) + 50vw);
+  filter: blur(5px);
+}
+
+#background.starburst {
+  background-image: repeating-conic-gradient(var(--secondary) 0deg 9deg, var(--primary) 9.01deg 17.99deg);
+  opacity: 0.1;
+  animation: spin 15s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+#stats {
+  width: 100%;
+  text-align: center;
+  padding-top: 35px;
+  color: var(--foreground);
+  text-shadow: 0px 0px 5px var(--backgroundAlt);
+  font-size: 1.5em;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#button {
+  width: 0;
+  height: 0;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  margin-top: 0;
+  margin-bottom: 25em;
+  transform: translatey(-11em);
+}
+
+#buttonTop {
+  background: var(--primary);
+  width: 20em;
+  height: 20em;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: -10em;
+  z-index: 10;
+  transition: transform 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+#buttonTop p {
+  font-size: 6em;
+  color: var(--secondary);
+  user-select: none;
+}
+
+#buttonShaft {
+  background: var(--secondary);
+  width: 20em;
+  height: 20em;
+  border-radius: 50%;
+  position: absolute;
+  top: 1.5em;
+  left: -10em;
+  z-index: 9;
+}
+
+#buttonBase {
+  background: var(--tertiary);
+  width: 21.5em;
+  height: 21.5em;
+  border-radius: 50%;
+  position: absolute;
+  top: 0.75em;
+  left: -10.75em;
+  z-index: 8;
+}
+
+#dark_toggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 10px;
+  width: 70px;
+  height: 34px;
+  background-color: #666;
+  border-radius: 34px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border: 3px solid #ccc;
+  border-style: ridge;
+  box-shadow: 0 0 3px 3px #4446 inset;
+}
+
+#dark_toggle::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 28px; 
+  height: 28px; 
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.2s, background-color 0.2s;
+  box-shadow: 0 0 3px 3px #4445 inset;
+}
+
+input[type="checkbox"]:checked + #dark_toggle {
+  background-color: skyblue; 
+}
+
+input[type="checkbox"]:checked + #dark_toggle::after {
+  transform: translateX(36px);
+  background-color: #ffc300;
+}
+
+#color_picker {
+  position: absolute;
+  display: grid;
+  align-content: center;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  height: 45px;
+  width: 45px;
+  padding: 0;
+  background-color: #0000;
+  border: 0;
+  font-size: 2em;
+  text-align: center;
+  transition: scale 0.2s ease, transform 0.2s ease;
+  text-shadow: #000f 0 0 15px;
+  cursor: pointer;
+}
+
+#color_picker:hover {
+  scale: 1.1;
+  transform: rotate(180deg) translatey(-3px);
+}
+
+.hidden {
+  display: none;
+}
+
+#color_menu {
+  width: 200px;
+  height: 300px;
+  background: #0008;
+  position: absolute;
+  top: 80px;
+  right: 15px;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+#color_menu button {
+  width: 80px;
+  height: 80px;
+  margin: 10px;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+}
+
+#red {
+  background-color: #ff0050;
+}
+
+#green {
+  background-color: #50ff00;
+}
+
+#blue {
+  background-color: #0050ff;
+}
+
+#cyan {
+  background-color: #50ffff;
+}
+
+#yellow {
+  background-color: #ffff50;
+}
+
+#magenta {
+  background-color: #ff50ff;
+}
+
+footer {
+  position: absolute;
+  height: 50px;
+  background: black;
+  width: calc(100vw - 60px);
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-right: 30px;
+  bottom: 0;
+}
+
+footer p {
+  width: auto;
+}
+
+a {
+  color: var(--primary);
+}
